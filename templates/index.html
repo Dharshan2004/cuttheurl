@@ -1,21 +1,43 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>cuttheurl</title>
-    <link rel="stylesheet" href="styles.css">
-  </head>
-  <body>
-    <div>
-      <div>
-        <form action="/shorten" method="post">
-          <input type="text" name="url" placeholder="Enter URL" required>
-          <input type="submit" value="Cut">
-        </form>
-      </div>
-      <div>
-        {% if url != "" %}
-          <p>Shortened URL: <a href="{{ url }}">{{ url }}</a></p>
-        {% endif %}
-      </div>
-    </div>
-  </body>
+<html data-bs-theme="light">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Home - Brand</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700&amp;display=swap">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/pikaday.min.css') }}">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg fixed-top portfolio-navbar gradient navbar-dark">
+        <div class="container"><a class="navbar-brand logo" href="#">CutTheURL</a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navbarNav"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <main class="page lanidng-page">
+        <section class="portfolio-block block-intro">
+            <div class="container">
+                <form action="/shorten" method="post"><input class="form-control" type="url" name="url" placeholder="Enter URL (with http://)"><input class="btn btn-primary" type="submit" value="Cut" style="margin: 13px;padding: 6px 16px;"></form>
+            </div>
+            {% if url != "" %}
+              <div class="container" style="margin: 40px;">
+                <span class="fs-4">
+                  Shortened URL: <a href="{{ url }}">{{ url }}</a>
+                </span>
+              </div>
+            {% endif %}
+            
+        </section>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='assets/js/pikaday.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/js/theme.js') }}"></script>
+</body>
+
+</html>
