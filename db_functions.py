@@ -18,7 +18,7 @@ def create_database():
     con.commit()
     con.close()
 
-def insert_url(id, actual_url):
+def insert_url(actual_url):
     con = sqlite3.connect("database.db")
     cur = con.cursor()
     id = generate_id()
@@ -35,6 +35,7 @@ def insert_url(id, actual_url):
             id = generate_id()
     con.commit()
     con.close()
+    return id
 
 def get_url(id):
     con = sqlite3.connect("database.db")
