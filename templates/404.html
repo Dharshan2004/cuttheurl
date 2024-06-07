@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>CutTheURL</title>
+    <title>404 Page Not Found</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='assets/bootstrap/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700&amp;display=swap">
     <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/pikaday.min.css') }}">
@@ -20,22 +20,20 @@
             </div>
         </div>
     </nav>
-    <main class="page lanidng-page">
-        <section class="portfolio-block block-intro">
-            <div class="container">
-                <form action="/shorten" method="post"><input class="form-control" type="url" name="url" placeholder="Enter URL (with http://)"><input class="btn btn-primary" type="submit" value="Cut" style="margin: 13px;padding: 6px 16px;"></form>
+    <main class="page hire-me-page"></main>
+    <section class="text-center py-4 py-xl-5" style="margin: 175px;">
+        <div class="container h-100">
+            <div class="row h-100">
+                <div class="col-md-10 col-xl-8 text-center d-flex d-sm-flex d-md-flex justify-content-center align-items-center mx-auto justify-content-md-start align-items-md-center justify-content-xl-center">
+                    <div>
+                        <h2 class="text-uppercase fw-bold mb-3">error 404: PAGE not found</h2>
+                        <p class="mb-4">The page you are looking for does not exist</p>
+                    </div>
+                </div>
             </div>
-            {% if url != "" %}
-              <div class="container" style="margin: 40px;">
-                <span class="fs-4">
-                  Shortened URL: <a href="{{ url }}">{{ url }}</a>
-                </span>
-              </div>
-            {% endif %}
-            
-        </section>
-    </main>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        </div>
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="{{ url_for('static', filename='assets/js/pikaday.min.js') }}"></script>
     <script src="{{ url_for('static', filename='assets/js/theme.js') }}"></script>
 </body>
