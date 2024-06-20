@@ -19,12 +19,9 @@ def shorten():
 @main.route('/<id>', methods=['GET'])
 def redirect_url(id):
     url = get_url(id)
-    print(url)
     if url is None:
-        print("URL not found")
-        return(redirect(url_for('page_not_found')))
+        return redirect(url_for('page_not_found'))
     else:
-        print("there is a url")
-        return(redirect(url))
+        return redirect(url)
 
 

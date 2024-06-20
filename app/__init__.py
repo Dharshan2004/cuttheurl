@@ -1,5 +1,6 @@
 from flask import Flask, render_template, session
 from .main import main as main_blueprint
+from .api import api as api_blueprint
 
 session = {"url": ""} # session to store the shortened URL
 
@@ -13,5 +14,6 @@ def create_app():
 
     # REGISTER BLUEPRINTS
     app.register_blueprint(main_blueprint)
+    app.register_blueprint(api_blueprint, url_prefix='/api')
 
     return app
