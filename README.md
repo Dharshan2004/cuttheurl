@@ -56,7 +56,6 @@ Before you begin, ensure you have met the following requirements:
 
    The application will be accessible at `http://127.0.0.1:5000`.
 
-
 #### Usage
 
 1. Open your web browser and navigate to `http://127.0.0.1:5000`.
@@ -83,10 +82,9 @@ Before you begin, ensure you have met the following requirements:
 
 #### **1. RESTful API**
 
-* **Create Endpoints:** Develop RESTful API endpoints for URL shortening and retrieval.
+* **✅ Create Endpoints:** Develop RESTful API endpoints for URL shortening and retrieval.
   * `POST /api/shorten`: Accepts a long URL and returns a shortened URL.
-  * `GET /api/<short_code>`: Redirects to the original long URL.
-  * `GET /api/urls`: Returns a list of all shortened URLs and their corresponding long URLs.
+  * `GET /api/get/<short_code>`: Returns the original URL.
 * **Authentication:** Implement token-based authentication (e.g., using JWT) to secure the API endpoints.
 * **API Documentation:** Use Swagger or Postman to document your API.
 
