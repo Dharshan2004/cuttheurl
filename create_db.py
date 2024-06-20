@@ -1,4 +1,4 @@
-from db_functions import create_database
+from app.db_functions import create_database
 
 def main():
     create_database()

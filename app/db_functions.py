@@ -42,6 +42,6 @@ def get_url(id):
     cur = con.cursor()
     cur.execute("SELECT actual_url FROM url_directory WHERE id = ?", (id,))
     con.commit()
-    url = cur.fetchone()[0]
+    url = cur.fetchone()
     con.close()
-    return url
+    return url[0]

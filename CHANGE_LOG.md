@@ -1,4 +1,13 @@
-## Update 1.0.0
+## [1.0.1] - 20/6/2024
+
+### Added
+
+* **API Interface:**
+  * **RESTful API Endpoints:** Introduced new endpoints to interact with the URL shortening service programmatically.
+    * `POST /api/shorten`: Accepts a long URL and returns a shortened URL.
+    * `GET /api/get/<short_code>`: Returns the original url.
+
+## [1.0.0] - 13/06/2024
 
 * **URL Shortening:**
 
