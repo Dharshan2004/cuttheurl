@@ -1,47 +1,46 @@
-import sqlite3
+import pymongo
+import certifi
 import random
 import string
 
+# loading environment variables
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+MONGODB_URI = os.getenv("MONGODB_URI")
+
+# Generate a unique id for the URL
 def generate_id():
     id = ''.join([random.choice(string.ascii_letters
             + string.digits) for n in range(10)])
     return id
- 
-def create_database():
-    con = sqlite3.connect("database.db")
-    cur = con.cursor()
-    cur.execute('''CREATE TABLE "url_directory" (
-	"id"	TEXT UNIQUE,
-	"actual_url"	TEXT NOT NULL,
-	PRIMARY KEY("id")
-);''')
-    con.commit()
-    con.close()
 
-def insert_url(actual_url):
-    con = sqlite3.connect("database.db")
-    cur = con.cursor()
+# MongoDB connection
+def get_db_connection():
+    client = pymongo.MongoClient(MONGODB_URI, tlsCAFile=certifi.where())
+    db = client.get_database("app")
+    return [client, db]
+
+# Insert URL into the database
+def insert_url(url):
+    client, db = get_db_connection()
     id = generate_id()
-    if actual_url.startswith("http://") or actual_url.startswith("https://"):
-        actual_url = actual_url
-    else:
-        actual_url = "http://" + actual_url
-    while True:
-        try:
-            cur.execute("INSERT INTO url_directory (id, actual_url) VALUES (?, ?)", (id, actual_url))
-            con.commit()
-            break
-        except sqlite3.IntegrityError:
-            id = generate_id()
-    con.commit()
-    con.close()
+    # check if the id is unique
+    while get_url(id) is not None:
+        id = generate_id()
+    urls = db.urls
+    urls.insert_one({"_id":id, "url": url})
+    client.close()
     return id
 
+# Get URL from the database
 def get_url(id):
-    con = sqlite3.connect("database.db")
-    cur = con.cursor()
-    cur.execute("SELECT actual_url FROM url_directory WHERE id = ?", (id,))
-    con.commit()
-    url = cur.fetchone()
-    con.close()
-    return url
+    client, db = get_db_connection()
+    urls = db.urls
+    url = urls.find_one({"_id": id})
+    client.close()
+    if url is not None:
+        return url['url']
+    else:
+        return None
