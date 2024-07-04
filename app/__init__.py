@@ -1,8 +1,7 @@
-from flask import Flask, render_template, session
+from flask import Flask, render_template
 from .main import main as main_blueprint
 from .api import api as api_blueprint
-
-session = {"url": ""} # session to store the shortened URL
+from .auth import auth as auth_blueprint
 
 def page_not_found(e):
     return render_template('404.html'), 404
@@ -15,5 +14,6 @@ def create_app():
     # REGISTER BLUEPRINTS
     app.register_blueprint(main_blueprint)
     app.register_blueprint(api_blueprint, url_prefix='/api')
+    app.register_blueprint(auth_blueprint, url_prefix='/auth')
 
     return app

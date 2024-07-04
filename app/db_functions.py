@@ -29,6 +29,10 @@ def insert_url(url):
     # check if the id is unique
     while get_url(id) is not None:
         id = generate_id()
+    if url.startswith("http://") or url.startswith("https://"):
+        pass
+    else:
+        url = "http://" + url
     urls = db.urls
     urls.insert_one({"_id":id, "url": url})
     client.close()

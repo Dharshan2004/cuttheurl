@@ -167,3 +167,6 @@ database.db
 
 # DS Store
 .DS_Store
+
+#session
+flask_session/
