@@ -105,3 +105,6 @@ Before you begin, ensure you have met the following requirements:
 * **Click Tracking:** Track the number of times each shortened URL is accessed.
 * **Dashboard:** Provide users with analytics on their shortened URLs, such as click counts and geographic distribution of clicks.
 * **Integration:** Use tools like Google Analytics for advanced tracking and insights.
+
+#### 5. **NoSQL Database**
+* **MongoDB:** Migration to a NoSQL Database such as MongoDB(preferably cloud-hosted)
