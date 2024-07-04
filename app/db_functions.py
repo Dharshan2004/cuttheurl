@@ -44,4 +44,4 @@ def get_url(id):
     con.commit()
     url = cur.fetchone()
     con.close()
-    return url[0]
+    return url

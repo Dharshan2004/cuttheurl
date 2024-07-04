@@ -161,3 +161,9 @@ cython_debug/
 
 # Database file
 database.db
+
+# credentials
+credentials.txt
+
+# DS Store
+.DS_Store
