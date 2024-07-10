@@ -14,7 +14,7 @@ def index():
 def shorten():
     url = request.form['url']
     id = insert_url(url)
-    session['url'] = f"http://127.0.0.1:8001/{id}"
+    session['url'] = url_for('main.redirect_url', id=id, _external=True)
     return redirect(url_for('main.index'))
 
 @main.route('/<id>', methods=['GET'])

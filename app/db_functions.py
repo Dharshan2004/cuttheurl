@@ -2,6 +2,7 @@ import pymongo
 import certifi
 import random
 import string
+from hash import hash_password, compare_passwords
 
 # loading environment variables
 from dotenv import load_dotenv
@@ -49,3 +50,30 @@ def get_url(id):
     else:
         return None
 
+def create_user(email, password):
+    client, db = get_db_connection()
+    users = db.users
+    user = users.find_one({"email": email})
+    if user is None:
+        salt = db.salt.find_one()['salt']
+        password = hash_password(password, salt)
+        users.insert_one({"email": email, "password": password})
+        client.close()
+        return True
+    else:
+        client.close()
+        return False
+    
+def login_user(email, password):
+    client, db = get_db_connection()
+    users = db.users
+    user = users.find_one({"email": email})
+    client.close()
+    if user is not None:
+        pw = user['password']
+        if compare_passwords(password, pw):
+            return True
+        else:
+            return False
+    else:
+        return False
