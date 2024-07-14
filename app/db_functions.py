@@ -56,7 +56,7 @@ def create_user(email, password):
     user = users.find_one({"email": email})
     if user is None:
         salt = db.salt.find_one()['salt']
-        password = hash_password(password, salt)
+        password = hash_password(password, salt).decode()
         users.insert_one({"email": email, "password": password})
         client.close()
         return True

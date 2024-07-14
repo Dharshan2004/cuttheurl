@@ -1,15 +1,15 @@
 from flask import render_template, redirect, request, url_for, flash
 from .forms import LoginForm, SignupForm
 from . import auth
-from ..db_functions import create_user
+from ..db_functions import create_user, login_user
 
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
     # Display login form
     form = LoginForm()
     if form.validate_on_submit():
-        print(form.email.data)
-        return "Logged in successfully."
+        res = login_user(form.email.data, form.password.data)
+        
     return render_template('auth/login.html', form=form)
 
 @auth.route('/signup', methods=['GET', 'POST'])
