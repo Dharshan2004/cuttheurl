@@ -2,7 +2,7 @@ import pymongo
 import certifi
 import random
 import string
-from hash import hash_password, compare_passwords
+from .hash import hash_password, compare_passwords
 
 # loading environment variables
 from dotenv import load_dotenv

@@ -9,6 +9,10 @@ def login():
     form = LoginForm()
     if form.validate_on_submit():
         res = login_user(form.email.data, form.password.data)
+        if res:
+            return "User logged in successfully."
+        else:
+            return "Invalid credentials."
         
     return render_template('auth/login.html', form=form)
 
