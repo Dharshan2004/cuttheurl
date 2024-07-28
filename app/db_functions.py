@@ -11,6 +11,24 @@ import os
 load_dotenv()
 MONGODB_URI = os.getenv("MONGODB_URI")
 
+def generate_user_id():
+    id = ''.join([random.choice(string.ascii_letters
+            + string.digits) for n in range(15)])
+    while check_user_id(id):
+        id = ''.join([random.choice(string.ascii_letters
+            + string.digits) for n in range(15)])
+    return id
+
+def check_user_id(user_id):
+    client, db = get_db_connection()
+    users = db.users
+    user = users.find_one({"_id": user_id})
+    client.close()
+    if user is None:
+        return True
+    else:
+        return False
+
 # Generate a unique id for the URL
 def generate_id():
     id = ''.join([random.choice(string.ascii_letters
@@ -55,11 +73,12 @@ def create_user(email, password):
     users = db.users
     user = users.find_one({"email": email})
     if user is None:
+        id = generate_user_id()
         salt = db.salt.find_one()['salt']
         password = hash_password(password, salt).decode()
-        users.insert_one({"email": email, "password": password})
+        users.insert_one({"_id": id, "email": email, "password": password})
         client.close()
-        return True
+        return id
     else:
         client.close()
         return False
@@ -77,3 +96,10 @@ def login_user(email, password):
             return False
     else:
         return False
+    
+def get_user(user_id):
+    client, db = get_db_connection()
+    users = db.users
+    user = users.find_one({"_id": user_id})
+    client.close()
+    return user
