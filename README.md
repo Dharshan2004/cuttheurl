@@ -1,4 +1,4 @@
-# CutTheURL: URL Shortner Web App
+# CutTheURL: URL Shortener Web App
 
 ## Overview
 
