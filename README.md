@@ -41,7 +41,7 @@ Before you begin, ensure you have met the following requirements:
    pip install -r requirements.txt
    ```
 
-#### Running the Application
+#### Running the Application Locally
 
 1. Initialise the Database
 
