@@ -1,0 +1,1 @@
+{"plan":{"messages":[{"role":"user","content":"QA check: find the README in this checkout and tell me its filename. Please leave the draft plan and tickets as they are."},{"role":"assistant","content":"The README filename is README.md, located at the repository root."}],"goal":"","tasks":[]},"queued":[]}
